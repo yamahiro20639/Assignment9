@@ -8,7 +8,7 @@ public class Movies {
     private int director_id;
     private String director;
 
-    Movies(int movie_id, String movieName, String releaseDate, int director_id, String director) {
+    public Movies(int movie_id, String movieName, String releaseDate, int director_id, String director) {
         this.movie_id = movie_id;
         this.movieName = movieName;
         this.releaseDate = releaseDate;
