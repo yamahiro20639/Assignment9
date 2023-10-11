@@ -29,7 +29,7 @@ public class Movies {
         return releaseDate;
     }
 
-    public int getDirector_id() {
+    public int Director_id() {
         return director_id;
     }
 
