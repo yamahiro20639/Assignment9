@@ -1,9 +1,10 @@
-package StarWars_Movie_List;
+package StarWars_Movie_List.service;
 
+import StarWars_Movie_List.entity.Movies;
+import StarWars_Movie_List.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MoviesService {

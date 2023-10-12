@@ -1,4 +1,4 @@
-package StarWars_Movie_List;
+package StarWars_Movie_List.entity;
 
 public class Movies {
     private int movie_id;

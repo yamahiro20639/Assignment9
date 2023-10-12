@@ -1,12 +1,13 @@
-package StarWars_Movie_List;
+package StarWars_Movie_List.controller;
 
+import StarWars_Movie_List.entity.Movies;
+import StarWars_Movie_List.service.MoviesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class MoviesController {

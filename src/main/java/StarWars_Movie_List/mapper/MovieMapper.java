@@ -1,10 +1,10 @@
-package StarWars_Movie_List;
+package StarWars_Movie_List.mapper;
 
+import StarWars_Movie_List.entity.Movies;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
 
