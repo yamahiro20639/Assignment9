@@ -24,5 +24,10 @@ public class MoviesService {
         return moviesTitle;
     }
 
+    public List<Movies> getDirector(String directorName) {
+        List<Movies> moviesTitle = movieMapper.findDirectorName(directorName);
+        return moviesTitle;
+    }
+
 }
 

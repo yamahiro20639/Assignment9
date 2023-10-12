@@ -17,6 +17,7 @@ public interface MovieMapper {
     @Select("SELECT * FROM movieList, directorList WHERE movie_id = #{id} AND director_id= #{id} ")
     List<Movies> findById(int id);
 
-
+    @Select("SELECT * FROM  directorList INNER JOIN movieList ON movie_id=director_id WHERE director LIKE CONCAT('%', #{directorName}, '%') ")
+    List<Movies> findDirectorName(String directorName);
 }
 //movieName,releaseDate
