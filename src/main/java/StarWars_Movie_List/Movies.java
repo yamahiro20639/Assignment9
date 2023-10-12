@@ -8,15 +8,6 @@ public class Movies {
     private int director_id;
     private String director;
 
-    public Movies(int movie_id, String movieName, String releaseDate, int director_id, String director) {
-        this.movie_id = movie_id;
-        this.movieName = movieName;
-        this.releaseDate = releaseDate;
-        this.director_id = director_id;
-        this.director = director;
-
-    }
-
     public int getMovie_id() {
         return movie_id;
     }

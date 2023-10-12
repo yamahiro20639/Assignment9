@@ -19,8 +19,8 @@ public class MoviesService {
         return movies;
     }
 
-    public List<MoviesTitle> getMoviesTitle(int id) {
-        List<MoviesTitle> moviesTitle = movieMapper.findById(id);
+    public List<Movies> getMoviesTitle(int id) {
+        List<Movies> moviesTitle = movieMapper.findById(id);
         return moviesTitle;
     }
 
