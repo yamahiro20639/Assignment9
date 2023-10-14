@@ -1,15 +1,15 @@
 package StarWars_Movie_List.entity;
 
-public class Movies {
-    private int movie_id;
+public class Movie {
+    private int movieId;
     private String movieName;
     private String releaseDate;
 
-    private int director_id;
+    private int directorId;
     private String director;
 
     public int getMovie_id() {
-        return movie_id;
+        return movieId;
     }
 
     public String getMovieName() {
@@ -21,7 +21,7 @@ public class Movies {
     }
 
     public int Director_id() {
-        return director_id;
+        return directorId;
     }
 
     public String getDirector() {

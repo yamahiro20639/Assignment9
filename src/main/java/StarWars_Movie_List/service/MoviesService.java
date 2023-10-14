@@ -1,6 +1,6 @@
 package StarWars_Movie_List.service;
 
-import StarWars_Movie_List.entity.Movies;
+import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +14,19 @@ public class MoviesService {
         this.movieMapper = movieMapper;
     }
 
-    public List<Movies> getMovies() {
+    public List<Movie> getMovies() {
 
-        List<Movies> movies = movieMapper.findAll();
+        List<Movie> movies = movieMapper.findAll();
         return movies;
     }
 
-    public List<Movies> getMoviesTitle(int id) {
-        List<Movies> moviesTitle = movieMapper.findById(id);
+    public List<Movie> getMoviesTitle(int id) {
+        List<Movie> moviesTitle = movieMapper.findById(id);
         return moviesTitle;
     }
 
-    public List<Movies> getDirector(String directorName) {
-        List<Movies> moviesTitle = movieMapper.findDirectorName(directorName);
+    public List<Movie> getDirector(String directorName) {
+        List<Movie> moviesTitle = movieMapper.findDirectorName(directorName);
         return moviesTitle;
     }
 

@@ -1,6 +1,6 @@
 package StarWars_Movie_List.mapper;
 
-import StarWars_Movie_List.entity.Movies;
+import StarWars_Movie_List.entity.Movie;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,13 +11,13 @@ import java.util.List;
 public interface MovieMapper {
 
 
-    @Select("SELECT * FROM movieList INNER JOIN directorList  ON movie_id=director_id")
-    List<Movies> findAll();
+    @Select("SELECT * FROM movie_list INNER JOIN director_list  ON movie_id=director_id")
+    List<Movie> findAll();
 
-    @Select("SELECT * FROM movieList, directorList WHERE movie_id = #{id} AND director_id= #{id} ")
-    List<Movies> findById(int id);
+    @Select("SELECT * FROM movie_list, director_list WHERE movie_id = #{id} AND director_id= #{id} ")
+    List<Movie> findById(int id);
 
-    @Select("SELECT * FROM  directorList INNER JOIN movieList ON movie_id=director_id WHERE director LIKE CONCAT('%', #{directorName}, '%') ")
-    List<Movies> findDirectorName(String directorName);
+    @Select("SELECT * FROM  director_list INNER JOIN movie_list ON movie_id=director_id WHERE director LIKE CONCAT('%', #{directorName}, '%') ")
+    List<Movie> findDirectorName(String directorName);
 }
 //movieName,releaseDate
