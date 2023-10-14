@@ -1,6 +1,6 @@
 package StarWars_Movie_List.controller;
 
-import StarWars_Movie_List.entity.Movies;
+import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.service.MoviesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +19,21 @@ public class MoviesController {
         this.moviesService = moviesService;
     }
 
-    @GetMapping("/StarWars")
-    public List<Movies> getMovies() {
-        List<Movies> movies = moviesService.getMovies();
+    @GetMapping("/star-wars")
+    public List<Movie> getMovies() {
+        List<Movie> movies = moviesService.getMovies();
         return movies;
     }
 
-    @GetMapping("/StarWars/{id}")
-    public List<Movies> getMovieTitle(@PathVariable("id") int id) {
-        List<Movies> moviesTitle = moviesService.getMoviesTitle(id);
+    @GetMapping("/star-wars/{id}")
+    public List<Movie> getMovieTitle(@PathVariable("id") int id) {
+        List<Movie> moviesTitle = moviesService.getMoviesTitle(id);
         return moviesTitle;
     }
 
-    @GetMapping("/StarWarsMovie")
-    public List<Movies> getMovieTitle(@RequestParam("directorName") String directorName) {
-        List<Movies> moviesTitle = moviesService.getDirector(directorName);
+    @GetMapping("/star-wars-movie")
+    public List<Movie> getMovieTitle(@RequestParam("directorName") String directorName) {
+        List<Movie> moviesTitle = moviesService.getDirector(directorName);
         return moviesTitle;
     }
 
