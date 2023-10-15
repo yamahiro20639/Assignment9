@@ -24,15 +24,9 @@ public class MoviesService {
     }
 
     public Movie getMovie(int id) {
-        Optional<Movie> movie = this.movieMapper.findById(id);
-        //return this.movieMapper.findById(id).orElseThrow(() -> new MovieNotFoundException("movie not found"));
-        //}
-        if (movie.isPresent()) {
-            return movie.get();
-        } else {
-            throw new MovieNotFoundException("movie not found");
-        }
+        return this.movieMapper.findById(id).orElseThrow(() -> new MovieNotFoundException("movie not found"));
     }
+
 
     public List<Movie> getDirector(String directorName) {
         List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
