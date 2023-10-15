@@ -30,14 +30,14 @@ public class MoviesController {
 
     @GetMapping("/star-wars/{id}")
     public Object getMovieTitle(@PathVariable("id") int id) {
-        Object moviesTitle = moviesService.getMoviesTitle(id);
-        return moviesTitle;
+        Object movie = moviesService.getMovie(id);
+        return movie;
     }
 
     @GetMapping("/star-wars-movie")
     public List<Movie> getMovieTitle(@RequestParam("directorName") String directorName) {
-        List<Movie> moviesTitle = moviesService.getDirector(directorName);
-        return moviesTitle;
+        List<Movie> movieOfDirector = moviesService.getDirector(directorName);
+        return movieOfDirector;
     }
 
     @ExceptionHandler(value = MovieNotFoundException.class)

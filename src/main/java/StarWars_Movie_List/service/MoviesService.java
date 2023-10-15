@@ -23,18 +23,18 @@ public class MoviesService {
         return movies;
     }
 
-    public Object getMoviesTitle(int id) {
-        Optional<Movie> moviesTitle = this.movieMapper.findById(id);
-        if (moviesTitle.isPresent()) {
-            return moviesTitle;
+    public Object getMovie(int id) {
+        Optional<Movie> movie = this.movieMapper.findById(id);
+        if (movie.isPresent()) {
+            return movie;
         } else {
             throw new MovieNotFoundException("movie not found");
         }
     }
 
     public List<Movie> getDirector(String directorName) {
-        List<Movie> moviesTitle = movieMapper.findDirectorName(directorName);
-        return moviesTitle;
+        List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
+        return movieOfDirector;
     }
 
 }
