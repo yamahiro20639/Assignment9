@@ -1,13 +1,16 @@
 package StarWars_Movie_List.controller;
 
+import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.service.MoviesService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MoviesController {
@@ -26,8 +29,8 @@ public class MoviesController {
     }
 
     @GetMapping("/star-wars/{id}")
-    public List<Movie> getMovieTitle(@PathVariable("id") int id) {
-        List<Movie> moviesTitle = moviesService.getMoviesTitle(id);
+    public Object getMovieTitle(@PathVariable("id") int id) {
+        Object moviesTitle = moviesService.getMoviesTitle(id);
         return moviesTitle;
     }
 
@@ -37,4 +40,15 @@ public class MoviesController {
         return moviesTitle;
     }
 
+    @ExceptionHandler(value = MovieNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNotFoundException(
+            MovieNotFoundException e, HttpServletRequest request) {
+        Map<String, String> body = Map.of(
+                "timestamp", ZonedDateTime.now().toString(),
+                "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+                "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+                "message", e.getMessage(),
+                "path", request.getRequestURI());
+        return new ResponseEntity(body, HttpStatus.NOT_FOUND);
+    }
 }
