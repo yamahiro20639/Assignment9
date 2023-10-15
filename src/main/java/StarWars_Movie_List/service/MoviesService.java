@@ -23,10 +23,12 @@ public class MoviesService {
         return movies;
     }
 
-    public Object getMovie(int id) {
+    public Movie getMovie(int id) {
         Optional<Movie> movie = this.movieMapper.findById(id);
+        //return this.movieMapper.findById(id).orElseThrow(() -> new MovieNotFoundException("movie not found"));
+        //}
         if (movie.isPresent()) {
-            return movie;
+            return movie.get();
         } else {
             throw new MovieNotFoundException("movie not found");
         }
