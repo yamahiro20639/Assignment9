@@ -1,10 +1,13 @@
 package StarWars_Movie_List.service;
 
+import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class MoviesService {
@@ -20,14 +23,14 @@ public class MoviesService {
         return movies;
     }
 
-    public List<Movie> getMoviesTitle(int id) {
-        List<Movie> moviesTitle = movieMapper.findById(id);
-        return moviesTitle;
+    public Movie getMovie(int id) {
+        return this.movieMapper.findById(id).orElseThrow(() -> new MovieNotFoundException("movie not found"));
     }
 
+
     public List<Movie> getDirector(String directorName) {
-        List<Movie> moviesTitle = movieMapper.findDirectorName(directorName);
-        return moviesTitle;
+        List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
+        return movieOfDirector;
     }
 
 }
