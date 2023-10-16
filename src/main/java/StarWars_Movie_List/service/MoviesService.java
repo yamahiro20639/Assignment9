@@ -27,15 +27,16 @@ public class MoviesService {
     }
 
 
-    public List<Movie> getDirectorName(String directorName) {
-        List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
+    public List<Movie> getDirectorName(String director) {
+        List<Movie> movieOfDirector = movieMapper.findDirectorName(director);
         return movieOfDirector;
     }
 
     //POST
-    public Movie insert(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        movieMapper.insert(movie);
+    public Movie insert(String movieName, String releaseDate, String director) {
+        Movie movie = new Movie(null, movieName, releaseDate, null, director);
+        movieMapper.insertMovieList(movie);
+        movieMapper.insertDirectorList(movie);
         return movie;
     }
 

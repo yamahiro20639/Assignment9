@@ -13,11 +13,14 @@ import java.util.Optional;
 
 public interface MovieMapper {
     //POST
-    @Insert("INSERT INTO movie_list (movie_name, release_date,director) VALUES (#{movieName}, #{releaseDate})")
-    @Insert("INSERT INTO director_list (director) VALUES (#{directorName})")
-    @Options(useGeneratedKeys = true, keyProperty = "movie_id")
-    @Options(useGeneratedKeys = true, keyProperty = "director_id")
-    void insert(Movie movie);
+    @Insert("INSERT INTO movie_list (movie_name, release_date) VALUES (#{movieName}, #{releaseDate})")
+    @Options(useGeneratedKeys = true, keyColumn = "movie_id", keyProperty = "movieId")
+    void insertMovieList(Movie movie);
+
+
+    @Insert("INSERT INTO director_list (director) VALUES (#{director})")
+    @Options(useGeneratedKeys = true, keyColumn = "director_id", keyProperty = "directorId")
+    void insertDirectorList(Movie movie);
 
     //GET
     @Select("SELECT * FROM movie_list INNER JOIN director_list  ON movie_id=director_id")
@@ -26,8 +29,8 @@ public interface MovieMapper {
     @Select("SELECT * FROM movie_list, director_list WHERE movie_id = #{id} AND director_id= #{id} ")
     Optional<Movie> findById(int id);
 
-    @Select("SELECT * FROM  director_list INNER JOIN movie_list ON movie_id=director_id WHERE director LIKE CONCAT('%', #{directorName}, '%') ")
-    List<Movie> findDirectorName(String directorName);
+    @Select("SELECT * FROM  director_list INNER JOIN movie_list ON movie_id=director_id WHERE director LIKE CONCAT('%', #{director}, '%') ")
+    List<Movie> findDirectorName(String director);
 
 
 }

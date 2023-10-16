@@ -40,8 +40,8 @@ public class MoviesController {
     }
 
     @GetMapping("/star-wars-movie")
-    public List<Movie> getMovieTitle(@RequestParam("directorName") String directorName) {
-        List<Movie> movieOfDirector = moviesService.getDirectorName(directorName);
+    public List<Movie> getMovieTitle(@RequestParam("director") String director) {
+        List<Movie> movieOfDirector = moviesService.getDirectorName(director);
         return movieOfDirector;
     }
 
