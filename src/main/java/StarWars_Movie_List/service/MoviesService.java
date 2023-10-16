@@ -6,8 +6,6 @@ import StarWars_Movie_List.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class MoviesService {
@@ -17,6 +15,7 @@ public class MoviesService {
         this.movieMapper = movieMapper;
     }
 
+    //GET
     public List<Movie> getMovies() {
 
         List<Movie> movies = movieMapper.findAll();
@@ -28,9 +27,16 @@ public class MoviesService {
     }
 
 
-    public List<Movie> getDirector(String directorName) {
+    public List<Movie> getDirectorName(String directorName) {
         List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
         return movieOfDirector;
+    }
+
+    //POST
+    public Movie insert(String movieName, String releaseDate, String directorName) {
+        Movie movie = new Movie(movieName, releaseDate, directorName);
+        movieMapper.insert(movie);
+        return movie;
     }
 
 }

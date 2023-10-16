@@ -6,7 +6,15 @@ public class Movie {
     private String releaseDate;
 
     private int directorId;
-    private String director;
+    private String directorName;
+
+    public Movie(String movieName, String releaseDate, String directorName) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.releaseDate = releaseDate;
+        this.directorId = directorId;
+        this.directorName = directorName;
+    }
 
     public int getMovie_id() {
         return movieId;
@@ -24,7 +32,7 @@ public class Movie {
         return directorId;
     }
 
-    public String getDirector() {
-        return director;
+    public String getDirectorName() {
+        return directorName;
     }
 }
