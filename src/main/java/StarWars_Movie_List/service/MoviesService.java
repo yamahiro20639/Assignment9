@@ -34,7 +34,7 @@ public class MoviesService {
 
     //POST
     public Movie insert(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(movieName, releaseDate, directorName);
+        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
         movieMapper.insert(movie);
         return movie;
     }

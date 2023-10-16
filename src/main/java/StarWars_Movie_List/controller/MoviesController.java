@@ -2,6 +2,7 @@ package StarWars_Movie_List.controller;
 
 import StarWars_Movie_List.Form.MovieForm;
 import StarWars_Movie_List.MovieNotFoundException;
+import StarWars_Movie_List.MovieRegistrationResponse;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.service.MoviesService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
@@ -57,9 +59,11 @@ public class MoviesController {
     //POST
 
     @PostMapping("/movie-registration-form")
-    public Movie movieRegistration(@RequestBody MovieForm movieForm) {
+    public ResponseEntity<MovieRegistrationResponse> movieRegistration(@RequestBody MovieForm movieForm, UriComponentsBuilder uriBuilder) {
         Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirector());
-        return movie;
+        URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovie_id()).toUri();
+        MovieRegistrationResponse message = new MovieRegistrationResponse("Movie created");
+        return ResponseEntity.created(location).body(message);
     }
 
 
