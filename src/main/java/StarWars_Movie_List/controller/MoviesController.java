@@ -1,6 +1,7 @@
 package StarWars_Movie_List.controller;
 
 import StarWars_Movie_List.Form.MovieForm;
+import StarWars_Movie_List.MovieDuplicationException;
 import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.MovieRegistrationResponse;
 import StarWars_Movie_List.entity.Movie;
@@ -66,5 +67,15 @@ public class MoviesController {
         return ResponseEntity.created(location).body(message); //.created(location)はステータスコード201を返す
     }
 
-
+    @ExceptionHandler(value = MovieDuplicationException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicationException(
+            MovieDuplicationException e, HttpServletRequest request) {
+        Map<String, String> body = Map.of(
+                "timestamp", ZonedDateTime.now().toString(),
+                "status", String.valueOf(HttpStatus.CONFLICT.value()),
+                "error", HttpStatus.CONFLICT.getReasonPhrase(),
+                "message", e.getMessage(),
+                "path", request.getRequestURI());
+        return new ResponseEntity(body, HttpStatus.CONFLICT);
+    }
 }

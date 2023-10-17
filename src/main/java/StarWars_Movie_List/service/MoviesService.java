@@ -1,5 +1,6 @@
 package StarWars_Movie_List.service;
 
+import StarWars_Movie_List.MovieDuplicationException;
 import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.mapper.MovieMapper;
@@ -35,9 +36,14 @@ public class MoviesService {
     //POST
     public Movie insert(String movieName, String releaseDate, String directorName) {
         Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        movieMapper.insertMovieList(movie);
-        movieMapper.insertDirectorList(movie);
-        return movie;
+        if (movie.getMovieName() == movieMapper.) {  //if()内の条件が思いつかない。。
+            throw new MovieDuplicationException("Already registered data");
+        } else {
+            movieMapper.insertMovieList(movie);
+            movieMapper.insertDirectorList(movie);
+            return movie;
+        }
+
     }
 
 }
