@@ -6,7 +6,35 @@ public class Movie {
     private String releaseDate;
 
     private int directorId;
-    private String director;
+    private String directorName;
+
+    public Movie(Object object1, String movieName, String releaseDate, Object object2, String directorName) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.releaseDate = releaseDate;
+        this.directorId = directorId;
+        this.directorName = directorName;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setDirectorId(int directorId) {
+        this.directorId = directorId;
+    }
+
+    public void setDirector(String directorName) {
+        this.directorName = directorName;
+    }
 
     public int getMovie_id() {
         return movieId;
@@ -24,7 +52,7 @@ public class Movie {
         return directorId;
     }
 
-    public String getDirector() {
-        return director;
+    public String getDirectorName() {
+        return directorName;
     }
 }

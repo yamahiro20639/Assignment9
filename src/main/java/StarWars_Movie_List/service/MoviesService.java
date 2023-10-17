@@ -1,13 +1,12 @@
 package StarWars_Movie_List.service;
 
+import StarWars_Movie_List.MovieDuplicationException;
 import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class MoviesService {
@@ -17,6 +16,7 @@ public class MoviesService {
         this.movieMapper = movieMapper;
     }
 
+    //GET
     public List<Movie> getMovies() {
 
         List<Movie> movies = movieMapper.findAll();
@@ -28,9 +28,22 @@ public class MoviesService {
     }
 
 
-    public List<Movie> getDirector(String directorName) {
+    public List<Movie> getDirectorName(String directorName) {
         List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
         return movieOfDirector;
+    }
+
+    //POST
+    public Movie insert(String movieName, String releaseDate, String directorName) {
+        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
+        if (movie.getMovieName() == movieMapper.) {  //if()内の条件が思いつかない。。
+            throw new MovieDuplicationException("Already registered data");
+        } else {
+            movieMapper.insertMovieList(movie);
+            movieMapper.insertDirectorList(movie);
+            return movie;
+        }
+
     }
 
 }
