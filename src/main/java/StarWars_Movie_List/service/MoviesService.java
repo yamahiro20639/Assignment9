@@ -34,21 +34,21 @@ public class MoviesService {
     }
 
     //POST
-    public Movie insert(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        if (　){  //if()内の条件が思いつかない。。
-            throw new MovieDuplicationException("Already registered data");
-        } else{
-            movieMapper.insertMovieList(movie);
-            movieMapper.insertDirectorList(movie);
-            return movie;
-        }
+    //public Movie insert(String movieName, String releaseDate, String directorName) {
+    //Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
+    //if (　){  //if()内の条件が思いつかない。。
+    //throw new MovieDuplicationException("Already registered data");
+    // } else{
+    //movieMapper.insertMovieList(movie);
+    // movieMapper.insertDirectorList(movie);
+    // return movie;
+    // }
 
-    }
+    //}
 
     //PATCH
-    public Movie update(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
+    public Movie updateMovie(int id, String movieName, String releaseDate, String directorName) {
+        Movie movie = new Movie(id, movieName, releaseDate, directorName);
         movieMapper.updateMovieList(movie);
         movieMapper.updateDirectorList(movie);
         return movie;

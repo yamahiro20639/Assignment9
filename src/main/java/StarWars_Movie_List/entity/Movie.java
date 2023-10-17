@@ -1,6 +1,7 @@
 package StarWars_Movie_List.entity;
 
 public class Movie {
+    private int id;
     private int movieId;
     private String movieName;
     private String releaseDate;
@@ -14,6 +15,17 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.directorId = directorId;
         this.directorName = directorName;
+    }
+
+    public Movie(int id, String movieName, String releaseDate, String directorName) {
+        this.id = id;
+        this.movieName = movieName;
+        this.releaseDate = releaseDate;
+        this.directorName = directorName;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setMovieId(int movieId) {
@@ -34,6 +46,10 @@ public class Movie {
 
     public void setDirector(String directorName) {
         this.directorName = directorName;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getMovie_id() {

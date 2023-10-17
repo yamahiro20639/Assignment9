@@ -1,6 +1,7 @@
 package StarWars_Movie_List.controller;
 
 import StarWars_Movie_List.Form.MovieForm;
+import StarWars_Movie_List.Form.MovieUpdateForm;
 import StarWars_Movie_List.MovieDuplicationException;
 import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.MovieRegistrationResponse;
@@ -60,13 +61,13 @@ public class MoviesController {
     }
     //POST
 
-    @PostMapping("/movie-registration-form")
-    public ResponseEntity<MovieRegistrationResponse> movieRegistration(@RequestBody MovieForm movieForm, UriComponentsBuilder uriBuilder) {
-        Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirectorName());
-        URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovie_id()).toUri();
-        MovieRegistrationResponse message = new MovieRegistrationResponse("Movie created");
-        return ResponseEntity.created(location).body(message); //.created(location)はステータスコード201を返す
-    }
+    // @PostMapping("/movie-registration-form")
+    //public ResponseEntity<MovieRegistrationResponse> movieRegistration(@RequestBody MovieForm movieForm, UriComponentsBuilder uriBuilder) {
+    //Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirectorName());
+    //URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovie_id()).toUri();
+    // MovieRegistrationResponse message = new MovieRegistrationResponse("Movie created");
+    // return ResponseEntity.created(location).body(message); //.created(location)はステータスコード201を返す
+    // }
 
     @ExceptionHandler(value = MovieDuplicationException.class)
     public ResponseEntity<Map<String, String>> handleDuplicationException(
@@ -82,9 +83,9 @@ public class MoviesController {
 
     //PATCH
     @PatchMapping("/movie-update/{id}")
-    public ResponseEntity<MovieUpdateResponse> movieUpdate(@PathVariable("id") int id, MovieUpdateResponse movieUpdateResponse) {
+    public ResponseEntity<MovieUpdateResponse> movieUpdate(@PathVariable("id") int id, @RequestBody MovieUpdateForm movieUpdateForm) {
         MovieUpdateResponse movieUpdateResponse = new MovieUpdateResponse("Movie updated");
-        Movie movie = MoviesService
+        Movie movie = moviesService.updateMovie(id, movieUpdateForm.getMovieName(), movieUpdateForm.getReleaseDate(), movieUpdateForm.getDirectorName());
         return ResponseEntity.ok(movieUpdateResponse);
     }
 
