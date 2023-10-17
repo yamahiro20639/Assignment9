@@ -36,7 +36,7 @@ public class MoviesService {
     //POST
     public Movie insert(String movieName, String releaseDate, String directorName) {
         Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        if (MovieMapper..equals(movie)){  //if()内の条件が思いつかない。。
+        if (　){  //if()内の条件が思いつかない。。
             throw new MovieDuplicationException("Already registered data");
         } else{
             movieMapper.insertMovieList(movie);
@@ -44,6 +44,14 @@ public class MoviesService {
             return movie;
         }
 
+    }
+
+    //PATCH
+    public Movie update(String movieName, String releaseDate, String directorName) {
+        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
+        movieMapper.updateMovieList(movie);
+        movieMapper.updateDirectorList(movie);
+        return movie;
     }
 
 }

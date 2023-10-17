@@ -4,6 +4,7 @@ import StarWars_Movie_List.Form.MovieForm;
 import StarWars_Movie_List.MovieDuplicationException;
 import StarWars_Movie_List.MovieNotFoundException;
 import StarWars_Movie_List.MovieRegistrationResponse;
+import StarWars_Movie_List.MovieUpdateResponse;
 import StarWars_Movie_List.entity.Movie;
 import StarWars_Movie_List.service.MoviesService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -78,4 +79,13 @@ public class MoviesController {
                 "path", request.getRequestURI());
         return new ResponseEntity(body, HttpStatus.CONFLICT);
     }
+
+    //PATCH
+    @PatchMapping("/movie-update/{id}")
+    public ResponseEntity<MovieUpdateResponse> movieUpdate(@PathVariable("id") int id, MovieUpdateResponse movieUpdateResponse) {
+        MovieUpdateResponse movieUpdateResponse = new MovieUpdateResponse("Movie updated");
+        Movie movie = MoviesService
+        return ResponseEntity.ok(movieUpdateResponse);
+    }
+
 }
