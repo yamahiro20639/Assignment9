@@ -34,14 +34,14 @@ public class MoviesController {
     }
 
     @GetMapping("/star-wars/{id}")
-    public Movie getMovieTitle(@PathVariable("id") int id) {
+    public ResponseEntity<Movie> getMovieTitle(@PathVariable("id") int id) {
         Movie movie = moviesService.getMovie(id);
-        return movie;
+        return ResponseEntity.ok(movie); //.ok() ステータスコード200を表す
     }
 
     @GetMapping("/star-wars-movie")
-    public List<Movie> getMovieTitle(@RequestParam("director") String director) {
-        List<Movie> movieOfDirector = moviesService.getDirectorName(director);
+    public List<Movie> getMovieTitle(@RequestParam("directorName") String directorName) {
+        List<Movie> movieOfDirector = moviesService.getDirectorName(directorName);
         return movieOfDirector;
     }
 
@@ -60,10 +60,10 @@ public class MoviesController {
 
     @PostMapping("/movie-registration-form")
     public ResponseEntity<MovieRegistrationResponse> movieRegistration(@RequestBody MovieForm movieForm, UriComponentsBuilder uriBuilder) {
-        Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirector());
+        Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirectorName());
         URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovie_id()).toUri();
         MovieRegistrationResponse message = new MovieRegistrationResponse("Movie created");
-        return ResponseEntity.created(location).body(message);
+        return ResponseEntity.created(location).body(message); //.created(location)はステータスコード201を返す
     }
 
 

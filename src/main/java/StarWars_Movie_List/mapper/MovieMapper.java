@@ -18,7 +18,7 @@ public interface MovieMapper {
     void insertMovieList(Movie movie);
 
 
-    @Insert("INSERT INTO director_list (director) VALUES (#{director})")
+    @Insert("INSERT INTO director_list (director_name) VALUES (#{directorName})")
     @Options(useGeneratedKeys = true, keyColumn = "director_id", keyProperty = "directorId")
     void insertDirectorList(Movie movie);
 
@@ -29,8 +29,8 @@ public interface MovieMapper {
     @Select("SELECT * FROM movie_list, director_list WHERE movie_id = #{id} AND director_id= #{id} ")
     Optional<Movie> findById(int id);
 
-    @Select("SELECT * FROM  director_list INNER JOIN movie_list ON movie_id=director_id WHERE director LIKE CONCAT('%', #{director}, '%') ")
-    List<Movie> findDirectorName(String director);
+    @Select("SELECT * FROM  director_list INNER JOIN movie_list ON movie_id=director_id WHERE director_name LIKE CONCAT('%', #{directorName}, '%') ")
+    List<Movie> findDirectorName(String directorName);
 
 
 }

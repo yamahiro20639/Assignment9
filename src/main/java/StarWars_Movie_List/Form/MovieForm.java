@@ -6,7 +6,7 @@ public class MovieForm {
     private String releaseDate;
 
     private int directorId;
-    private String director;
+    private String directorName;
 
     public int getMovieId() {
         return movieId;
@@ -24,7 +24,7 @@ public class MovieForm {
         return directorId;
     }
 
-    public String getDirector() {
-        return director;
+    public String getDirectorName() {
+        return directorName;
     }
 }
