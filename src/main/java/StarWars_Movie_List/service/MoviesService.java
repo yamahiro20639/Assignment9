@@ -35,15 +35,14 @@ public class MoviesService {
 
     //POST
     public Movie insert(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        if (movieMapper.getByMovie(movieName) || movieMapper.getByReleaseDate(releaseDate) || movieMapper.getByDirector(directorName)) {
+        if (movieMapper.getByMovie(movieName, releaseDate) && movieMapper.getByDirector(directorName)) {
             throw new MovieDuplicationException("Already registered data");
         } else {
+            Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
             movieMapper.insertMovieList(movie);
             movieMapper.insertDirectorList(movie);
             return movie;
         }
-
     }
 
 }

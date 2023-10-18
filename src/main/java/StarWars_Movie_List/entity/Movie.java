@@ -48,7 +48,7 @@ public class Movie {
         return releaseDate;
     }
 
-    public int DirectorId() {
+    public int getDirectorId() {
         return directorId;
     }
 
