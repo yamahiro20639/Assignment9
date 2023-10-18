@@ -14,11 +14,17 @@ import java.util.Optional;
 public interface MovieMapper {
     //POST
     @Insert("INSERT INTO movie_list (movie_name, release_date) VALUES (#{movieName}, #{releaseDate})")
+    boolean getByMovie(String movieName);
+
+    boolean getByReleaseDate(String releaseDate);
+
     @Options(useGeneratedKeys = true, keyColumn = "movie_id", keyProperty = "movieId")
     void insertMovieList(Movie movie);
 
 
     @Insert("INSERT INTO director_list (director_name) VALUES (#{directorName})")
+    boolean getByDirector(String directorName);
+
     @Options(useGeneratedKeys = true, keyColumn = "director_id", keyProperty = "directorId")
     void insertDirectorList(Movie movie);
 

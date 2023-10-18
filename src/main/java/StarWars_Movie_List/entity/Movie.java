@@ -36,7 +36,7 @@ public class Movie {
         this.directorName = directorName;
     }
 
-    public int getMovie_id() {
+    public int getMovieId() {
         return movieId;
     }
 
@@ -48,7 +48,7 @@ public class Movie {
         return releaseDate;
     }
 
-    public int Director_id() {
+    public int DirectorId() {
         return directorId;
     }
 

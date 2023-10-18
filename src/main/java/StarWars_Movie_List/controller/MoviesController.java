@@ -57,12 +57,12 @@ public class MoviesController {
                 "path", request.getRequestURI());
         return new ResponseEntity(body, HttpStatus.NOT_FOUND);
     }
-    //POST
 
+    //POST
     @PostMapping("/movie-registration-form")
     public ResponseEntity<MovieRegistrationResponse> movieRegistration(@RequestBody MovieForm movieForm, UriComponentsBuilder uriBuilder) {
         Movie movie = moviesService.insert(movieForm.getMovieName(), movieForm.getReleaseDate(), movieForm.getDirectorName());
-        URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovie_id()).toUri();
+        URI location = uriBuilder.path("/movie-registration-form/{id}").buildAndExpand(movie.getMovieId()).toUri();
         MovieRegistrationResponse message = new MovieRegistrationResponse("Movie created");
         return ResponseEntity.created(location).body(message); //.created(location)はステータスコード201を返す
     }
