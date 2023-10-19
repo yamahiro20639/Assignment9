@@ -13,19 +13,18 @@ import java.util.Optional;
 
 public interface MovieMapper {
     //POST
-    @Select("SELECT * FROM movie_list WHERE movie_name = #{movieName} AND release_date = #{releaseDate}")
-    boolean getByMovie(String movieName);
+    @Select("SELECT * FROM movie_list WHERE movie_name = #{movieName}")
+    Object getByMovie(String movieName);
 
-    boolean getByRelease(String releaseDate);
-
+    @Select("SELECT * FROM movie_list WHERE  release_date = #{releaseDate}")
+    Object getByReleaseDate(String releaseDate);
 
     @Insert("INSERT INTO movie_list (movie_name, release_date) VALUES (#{movieName}, #{releaseDate})")
     @Options(useGeneratedKeys = true, keyColumn = "movie_id", keyProperty = "movieId")
     void insertMovieList(Movie movie);
 
-
     @Select("SELECT * FROM director_list WHERE director_name = #{directorName}")
-    boolean getByDirector(String directorName);
+    Object getByDirector(String directorName);
 
     @Insert("INSERT INTO director_list (director_name) VALUES (#{directorName})")
     @Options(useGeneratedKeys = true, keyColumn = "director_id", keyProperty = "directorId")
