@@ -27,7 +27,6 @@ public class MoviesService {
         return this.movieMapper.findById(id).orElseThrow(() -> new MovieNotFoundException("movie not found"));
     }
 
-
     public List<Movie> getDirectorName(String directorName) {
         List<Movie> movieOfDirector = movieMapper.findDirectorName(directorName);
         return movieOfDirector;
@@ -35,15 +34,15 @@ public class MoviesService {
 
     //POST
     public Movie insert(String movieName, String releaseDate, String directorName) {
-        Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
-        if (movie.getMovieName() == movieMapper.) {  //if()内の条件が思いつかない。。
+        if (movieMapper.getByMovie(movieName).isPresent() || movieMapper.getByReleaseDate(releaseDate).isPresent() || movieMapper.getByDirector(directorName).isPresent()) {
             throw new MovieDuplicationException("Already registered data");
         } else {
+            Movie movie = new Movie(null, movieName, releaseDate, null, directorName);
             movieMapper.insertMovieList(movie);
             movieMapper.insertDirectorList(movie);
             return movie;
-        }
 
+        }
     }
 
 }
