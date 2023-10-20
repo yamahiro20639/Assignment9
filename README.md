@@ -1,8 +1,10 @@
 # 概要
-CRUD処理の中でデーターベースに対するREAD機能の実装を行いました。
+
+CRUD処理の中でデーターベースに対するREAD機能の実装を行う。
 
 # 動作確認
-　・GET（全件取得）
+
+・GET（全件取得）
 
 <img width="1680" alt="スクリーンショット 2023-10-12 23 56 39" src="https://github.com/yamahiro20639/Assignment9/assets/144509349/8cbcb594-e3a7-4f03-9137-20b983fa7055">
 
